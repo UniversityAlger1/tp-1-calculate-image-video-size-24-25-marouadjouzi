@@ -1,16 +1,8 @@
 #include <string.h>
-#include "config/video.h"
+#include <stdio.h>
 
-// Parameters:
-//   w: width of the image
-//   h: height of the image
-//   durationMovie: duration in seconds of movie (colored image)
-//   durationCredits: duration in seconds of credits (black/white image)
-//   fps: Frames Per Second of the video
-//   unit: Unit of the output value. It could be 'bt' byte, 'ko' kilobits, 'mo' megabits, 'go' gigabits
-// Return value
-//   colored video size (based on the unit passed parameter)
-float video(int w, int h, int durationMovie, int durationCredits, int fps, char* unit) {
+// Function to calculate video size
+float video(int w, int h, int durationMovie, int durationCredits, int fps, const char* unit) {
     // Calculate sizes
     float colored_frame_size = w * h * 3; // Size per colored frame in bytes
     float bw_frame_size = w * h;           // Size per B/W frame in bytes

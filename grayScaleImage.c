@@ -8,6 +8,7 @@
 //   grayScale size of the image Bitmap (in byte)
 float grayScaleImage(int w, int h) {
     // Calculate the size of the grayscale image in bytes
-    float size = (float)(w * h);  // Each pixel is 1 byte
+    float size;
+    size = w * h;  // Each pixel is 1 byte
     return size;
 }
