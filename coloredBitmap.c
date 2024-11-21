@@ -1,21 +1,27 @@
-  GNU nano 7.2                    coloredBitmap.c                     Modified
-#include <stdio.h>
 #include <string.h>
-#include <stddef.h> // Required for size_t
+#include "config/coloredBitmap.h"
+// Parameters:
+//   w: width of the image
+//   h: height of the image
+//   u: Unit of the output value. It could be 'bt' bits, 'ko' kilobits, 'mo' megabits, 'go' gigabits
+// Return value
+//   colored image size Bitmap (based on the unit passed parametter)
+float coloredBitmap(int w, int h, char* unit) {
+   // YOUR CODE HERE - BEGIN
+ // Taille de base en bits (3 octets par pixel)
+    float colorsize = w * h * 3 ;
 
-float coloredBitmap(int w, int h, const char* unit) {
-    float size_in_bytes = w * h * 3; // 3 bytes per pixel for RGB
-
+    // Conversion en fonction de l'unité
     if (strcmp(unit, "bt") == 0) {
-        return size_in_bytes * 8; // Convert bytes to bits
+        return colorsize*8; // Taille en bits
     } else if (strcmp(unit, "ko") == 0) {
-        return (size_in_bytes * 8) / 1000; // Convert bytes to kilobits
+        return colorsize / 1024; // Taille en kilobits
     } else if (strcmp(unit, "mo") == 0) {
-        return (size_in_bytes * 8) / 1000000; // Convert bytes to megabits
+        return (colorsize /1024) / 1024; // Taille en mégabits
     } else if (strcmp(unit, "go") == 0) {
-        return (size_in_bytes * 8) / 1000000000; // Convert bytes to gigabits
-    } else {
-        fprintf(stderr, "Error: Unrecognized unit '%s'.\n", unit);
-        return -1;
-    }
+        return ((colorsize /1024) / 1024) / 1024; // Taille en gigabits
+    }else 
+    return colorsize;
+   // YOUR CODE HERE - END
+   return 0;
 }
